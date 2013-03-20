@@ -1,3 +1,9 @@
+/**
+ * Crassword word list header
+ * Copyright (c) 2013 by Alec Smecher
+ * Released under the GPL v2 licence. See COPYING for details.
+ */
+
 #ifndef WORDLIST_H
 #define WORDLIST_H
 

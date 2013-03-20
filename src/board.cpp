@@ -1,3 +1,9 @@
+/**
+ * Crossword "board" implementation
+ * Copyright (c) 2013 by Alec Smecher
+ * Released under the GPL v2 licence. See COPYING for details.
+ */
+
 #include "board.h"
 
 #include <stdio.h>
@@ -44,10 +50,10 @@ bool canPlaceWord(char *b, Word *word, int x, int y, int direction, bool require
 	return intersected || !requireIntersect;
 }
 
-int placeWord(char *b, Word *word, int x, int y, int direction) {
+int placeWord(char *b, Word *word, int x, int y, int direction, bool solve) {
 	int quality = 0;
 	int crossingValue = 4;
-	char *w = word->word;
+	char *w = solve?word->clean:word->word;
 
 	word->x = x;
 	word->y = y;
@@ -86,25 +92,57 @@ void dumpBoard(char *b) {
 	}
 }
 
-void drawBoard(char *b, Wordlist *w) {
+void drawBoard(char *b, Wordlist *w, bool html, bool solve) {
 	int maxx=0, maxy=0;
 	for (int pass=0; pass<=3; pass++) { // 0: get extents; 1: board; 2: across clues; 3: down clues
 		int cluenum = 1;
 		switch (pass) {
-			case 2: fputs("\nAcross:\n", stdout); break;
-			case 3: fputs("\nDown:\n", stdout); break;
+			case 1:
+				if (html) {
+					fputs("<div><div style=\"float: left; padding: 20px;\">\n<form action=\"#\">\n<table border=\"0\">\n", stdout);
+				}
+				break;
+			case 2:
+				fputs(html?"<div><h1>":"\n", stdout);
+				fputs("Across", stdout);
+				fputs(html?"</h1>":"\n", stdout);
+				break;
+			case 3:
+				fputs(html?"<h1>":"\n", stdout);
+				fputs("Down", stdout);
+				fputs(html?"</h1>":"\n", stdout);
+				break;
 		}
 		for (int y=0; y<HEIGHT; y++) {
+			switch (pass) {
+				case 1: if (y<=maxy) {
+						if (html) {
+							fputs("<tr>\n", stdout);
+						}
+					}
+					break;
+			}
 			for (int x=0; x<WIDTH; x++) {
 				bool foundSomething = false;
 				for (int i=0; i<w->c; i++) {
 					if (w->words[i].x == x && w->words[i].y == y && w->words[i].used) {
 						switch (pass) {
+							case 0: if (solve) {
+									// Fill the board in with solution text.
+									placeWord(b, &(w->words[i]), x, y, w->words[i].direction, true);
+								}
+								break;
 							case 2:
-								if (w->words[i].direction == ACROSS) printf("%02i %s\n", cluenum, w->words[i].clue);
+								if (w->words[i].direction == ACROSS) {
+									printf("%02i %s\n", cluenum, w->words[i].clue);
+									if (html) fputs("<br/>\n", stdout);
+								}
 								break;
 							case 3:
-								if (w->words[i].direction == DOWN) printf("%02i %s\n", cluenum, w->words[i].clue);
+								if (w->words[i].direction == DOWN) {
+									printf("%02i %s\n", cluenum, w->words[i].clue);
+									if (html) fputs("<br/>\n", stdout);
+								}
 								break;
 						}
 						foundSomething = true;
@@ -119,12 +157,20 @@ void drawBoard(char *b, Wordlist *w) {
 						break;
 					case 1:
 						if (foundSomething) {
-							printf("%02i ", cluenum);
+							if (html && solve) printf("<td><sup>%02i</sup><br/><input type=\"text\" size=1 maxlength=1 value=\"%c\"/>&nbsp;</td>\n", cluenum, LETTER(b,x,y));
+							else if (html) printf("<td><sup>%02i</sup><br/><input type=\"text\" size=1 maxlength=1/>&nbsp;</td>\n", cluenum);
+							else printf("%02i ", cluenum);
 							cluenum++;
 						} else if (LETTER(b, x, y)==0) {
-							if (x<=maxx && y<=maxy) fputs(".. ", stdout);
+							if (x<=maxx && y<=maxy) {
+								if (html) fputs("<td></td>\n", stdout);
+								else fputs(".. ", stdout);
+							}
 						} else {
-							fputs("__ ", stdout);
+							if (html && solve) printf("<td><sup>&nbsp;</sup><br/><input type=\"text\" size=1 maxlength=1 value=\"%c\"/></td>\n", LETTER(b,x,y));
+							else if (html) fputs("<td><sup>&nbsp;</sup><br/><input type=\"text\" size=1 maxlength=1/></td>\n", stdout);
+							else if (solve) printf("%c_ ", LETTER(b,x,y));
+							else fputs("__ ", stdout);
 						}
 						break;
 					case 2:
@@ -135,8 +181,27 @@ void drawBoard(char *b, Wordlist *w) {
 				}
 			}
 			switch (pass) {
-				case 1: if (y<=maxy) fputc('\n', stdout); break;
+				case 1: if (y<=maxy) {
+						if (html) {
+							fputs("</tr>\n", stdout);
+						} else {
+							fputc('\n', stdout);
+						}
+					}
+					break;
 			}
+		}
+		switch (pass) {
+			case 1:
+				if (html) {
+					fputs("</table>\n</form>\n</div>\n", stdout);
+				}
+				break;
+			case 3:
+				if (html) {
+					fputs("</div></div>\n", stdout);
+				}
+				break;
 		}
 	}
 }

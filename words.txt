@@ -1,20 +1,20 @@
-S_IT,snit,S__T: Grump.
-F__K,fink,F__K: Disagreeable person.
-A__HOLE,armhole,A______: An aperture you can fit your fist through.
-_UNT,aunt,_UNT: Female family member.
-S_I_HEAD,skinhead,S___HEAD: Motorcycle aficionados can commonly be this.
-S_IT,spit,S___: Produced naturally by the body, but considered impolite.
-S_IT,suit,S___: Gotten into on Mondays.
-KI__,kids,KI__: What Father makes us because he loves Mother.
-P___S,pants,P___S: Below the belt.
-V__IN_,vexing,V__IN_: Tormenting to a man
-C__K,cork,C__K: Often found in a bung hole.
-MO___R,mohair,MO___R: Highly coveted; soft and warm.
-F___ER,fibber,F___ER: Liar, not to be trusted with Mother.
-PH____S,physics,PH____S: A powerful thing, feared by many, to be studied closely.
-L__T,lint,L__T: That which, in unchecked accumulation, mars man's propriety.
-BR____S,brewers,BR____S: Sources of intoxication, purveyors of bliss.
-T__S,toes,T__S: Body parts, usually clothed.
-D__K,duck,D__K: A lively little fellow with a long neck and a round head.
-BI__H,birth,BI__H: Mother did this best.
-B_LL____,balloons,B_LL____: What Father gave us.
+S_IT,SNIT,S__T: Grump.
+F__K,FINK,F__K: Disagreeable person.
+A__HOLE,ARMHOLE,A______: An aperture you can fit your fist through.
+_UNT,AUNT,_UNT: Female family member.
+S_I_HEAD,SKINHEAD,S___HEAD: Motorcycle aficionados can commonly be this.
+S_IT,SPIT,S___: Produced naturally by the body, but considered impolite.
+S_IT,SUIT,S___: Gotten into on Mondays.
+KI__,KIDS,KI__: What Father makes us because he loves Mother.
+P___S,PANTS,P___S: Below the belt.
+V__IN_,VEXING,V__IN_: Tormenting to a man
+C__K,CORK,C__K: Often found in a bung hole.
+MO___R,MOHAIR,MO___R: Highly coveted; soft and warm.
+F___ER,FIBBER,F___ER: Liar, not to be trusted with Mother.
+PH____S,PHYSICS,PH____S: A powerful thing, feared by many, to be studied closely.
+L__T,LINT,L__T: That which, in unchecked accumulation, mars man's propriety.
+BR____S,BREWERS,BR____S: Sources of intoxication, purveyors of bliss.
+T__S,TOES,T__S: Body parts, usually clothed.
+D__K,DUCK,D__K: A lively little fellow with a long neck and a round head.
+BI__H,BIRTH,BI__H: Mother did this best.
+B_LL____,BALLOONS,B_LL____: What Father gave us.

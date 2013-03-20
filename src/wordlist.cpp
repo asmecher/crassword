@@ -1,3 +1,9 @@
+/**
+ * Crassword word list implementation
+ * Copyright (c) 2013 by Alec Smecher
+ * Released under the GPL v2 licence. See COPYING for details.
+ */
+
 #include "wordlist.h"
 
 #define BUFSIZE 120
