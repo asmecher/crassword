@@ -18,4 +18,4 @@ T__S,TOES,T__S: Body parts, usually clothed.
 D__K,DUCK,D__K: A lively little fellow with a long neck and a round head.
 BI__H,BIRTH,BI__H: Mother did this best.
 B_LL____,BALLOONS,B_LL____: What Father gave us.
-PEN___S,PENCILS,PEN___S: Plural cylindrical tool of creativity and pleasure.
+PEN___S,PENCILS,PEN___S: Plural cylindrical tools of creativity and pleasure.
